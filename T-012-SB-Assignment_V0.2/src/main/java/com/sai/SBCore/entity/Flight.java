@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="flight")
 public class Flight {
@@ -24,6 +27,14 @@ public class Flight {
 	@ManyToOne
 	@JoinColumn(name = "flight_infoid")
 	private FlightInfo flightInfo;
+	
+	@ManyToOne
+	@JoinColumn(name = "fare_id")
+	private Fare fare;
+	
+	@ManyToOne
+	@JoinColumn(name = "inv_id")
+	private Inventory inventory;
 	
 	@Column(name = "destination")
 	private String destination;
@@ -43,8 +54,23 @@ public class Flight {
 	@Column(name = "origin")
 	private String origin;
 	
+	@JsonBackReference
+	public Inventory getInventory() {
+		return inventory;
+	}
+	public void setInventory(Inventory inventory) {
+		this.inventory = inventory;
+	}
 	
-
+	@JsonBackReference
+	public Fare getFare() {
+		return fare;
+	}
+	public void setFare(Fare fare) {
+		this.fare = fare;
+	}
+	
+	@JsonBackReference
 	public FlightInfo getFlightInfo() {
 		return flightInfo;
 	}

@@ -22,5 +22,10 @@ public interface FlightDAO extends JpaRepository<Flight, Integer>{
 	
 	@Query("select f from Flight f where (f.flightInfo.airlineInfo.airlineName='Air India')")
 	public List<Flight> findOriginDestinationDateSeatsFlightNumberSpeficAirLine();
-
+	
+	public List<Flight> findFlightsByOriginLikeAndDestinationLike(String origin, String destination);
+	
+	public List<Flight> findFlightsByOriginLikeAndDestinationLikeAndFlightDateEquals(String origin, String destination, LocalDate date);
+	
+	
 }

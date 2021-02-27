@@ -12,6 +12,5 @@ public interface FlightInfoDAO extends JpaRepository<FlightInfo, Integer> {
 	//if below error is encountered somewhere we are getting below exception.
 //	Error creating bean with name 'airlineInfoDAO' defined in com.sai.SBCore.dao.AirlineInfoDAO defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is java.lang.IllegalArgumentException: Not a managed type: interface
 	
-	@Query("select f from FlightInfo f where (f.seatCapacity > 40)")
-	public List<FlightInfo> findWithSeats();	
+	public List<FlightInfo> findFlightInfoBySeatCapacityGreaterThan(int number);	
 }
